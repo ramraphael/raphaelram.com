@@ -1,0 +1,37 @@
+@tailwind base;
+
+/* Write your own custom base styles here */
+
+/* Start purging... */
+@tailwind components;
+/* Stop purging. */
+
+/* Write you own custom component styles here */
+
+/* Start purging... */
+@tailwind utilities;
+/* Stop purging. */
+
+/* Your own custom utilities */
+
+@layer utilities {
+  /* configurable with the "fontVariantCaps" theme object */
+  .caps-normal {
+    font-variant-caps: normal;
+  }
+  .caps-small {
+    font-variant-caps: small-caps;
+  }
+  .caps-all-small {
+    font-variant-caps: all-small-caps;
+  }
+  .caps-petite {
+    font-variant-caps: petite-caps;
+  }
+  .caps-unicase {
+    font-variant-caps: unicase;
+  }
+  .caps-titling {
+    font-variant-caps: titling-caps;
+  }
+}
