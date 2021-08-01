@@ -7,6 +7,12 @@ module.exports = {
       green: theme("colors.green.500"),
       blue: theme("colors.blue.500"),
     }),
+    fontFamily: {
+      sans: ["Source Sans Pro", "ui-sans-serif", "system-ui"],
+      serif: ["Source Serif Pro", "ui-serif", "Georgia"],
+      mono: ["Source Code Pro", "ui-monospace", "SFMono-Regular"],
+    },
+
     extend: {
       colors: {
         "accent-1": "#FAFAFA",

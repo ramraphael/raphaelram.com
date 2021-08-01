@@ -7,6 +7,7 @@ type Props = {
   slug?: string;
 };
 
+// TODO use next/image for optimization
 const CoverImage = ({ title, src, slug }: Props) => {
   const image = (
     <img

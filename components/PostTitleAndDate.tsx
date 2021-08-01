@@ -12,7 +12,7 @@ export const PostTitleAndDate: React.FC<PostTitleAndDateProps> = ({
 }) => {
   return (
     <Fragment>
-      <h1 className="text-3xl text-gray-700 font-serif font-semibold leading-tight md:leading-none mb-4 text-center md:text-left">
+      <h1 className="text-3xl text-gray-700 font-serif font-semibold mb-4 text-left">
         {title}
       </h1>
 

@@ -14,6 +14,9 @@ import PostType from "../../types/post";
 import { PostTitleAndDate } from "../../components/PostTitleAndDate";
 import { NextPage } from "next";
 import { NextAndPreviousPost } from "../../components/NextAndPreviousPost";
+import { TwitterShareButton } from "react-share";
+import { SiTwitter } from "react-icons/si";
+import { getBaseUrl } from "../../config/getBaseUrl";
 
 type Props = {
   post: PostType;
@@ -57,7 +60,18 @@ const Post: NextPage<Props> = ({ post, nextPost, previousPost }) => {
             date={post.date}
           />
 
-          <PostBody className="mb-28" content={post.content} />
+          <PostBody className="mb-14" content={post.content} />
+
+          <TwitterShareButton
+            title={post.title}
+            url={`${getBaseUrl()}${router.asPath}`}
+            className="flex items-center mb-20 hover:opacity-80"
+          >
+            <SiTwitter className="mr-4 fill-[#1DA1F2]" />
+            <span className="uppercase tracking-wider text-[#1a8acf] font-bold opacity-80">
+              Share on Twitter
+            </span>
+          </TwitterShareButton>
 
           <hr className="mb-14" />
 
