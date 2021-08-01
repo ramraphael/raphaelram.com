@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import DateFormatter from "./DateFormatter";
+import { DateFormatter } from "./DateFormatter";
 
 interface PostTitleAndDateProps {
   title: string;

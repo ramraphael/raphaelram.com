@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { HOME_OG_IMAGE_URL } from "../lib/constants";
 
-const Meta = () => {
+export const Meta = () => {
   return (
     <Head>
       <link
@@ -18,5 +18,3 @@ const Meta = () => {
     </Head>
   );
 };
-
-export default Meta;

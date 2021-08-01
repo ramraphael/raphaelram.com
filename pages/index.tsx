@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { getAllPosts } from "../lib/api";
 import Head from "next/head";
 import Post from "../types/post";
-import DateFormatter from "../components/DateFormatter";
+import { DateFormatter } from "../components/DateFormatter";
 import { useRouter } from "next/router";
 
 type Props = {
@@ -18,10 +18,10 @@ const Index = ({ allPosts }: Props) => {
         <title>Raphael Ram</title>
       </Head>
 
-      {allPosts.map(({ title, slug, date, excerpt }) => (
+      {allPosts.map(({ title, slug, date, description }) => (
         <div
           key={slug}
-          className="hover:opacity-80 cursor-pointer hover:border-l-4 hover:pl-4 transition-spacing duration-200 text-gray-700 mb-12 last:mb-0"
+          className="cursor-pointer hover:opacity-80 hover:border-l-4 hover:pl-4 transition-spacing duration-200 text-gray-700 mb-12 last:mb-0"
           role="link"
           onClick={() => router.push(`/post/${slug}`)}
         >
@@ -34,7 +34,7 @@ const Index = ({ allPosts }: Props) => {
             dateString={date}
           />
 
-          <h2>{excerpt}</h2>
+          <h2>{description}</h2>
         </div>
       ))}
     </Fragment>
@@ -44,7 +44,7 @@ const Index = ({ allPosts }: Props) => {
 export default Index;
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts(["title", "slug", "date", "excerpt"]);
+  const allPosts = getAllPosts(["title", "slug", "date", "description"]);
 
   return {
     props: { allPosts },

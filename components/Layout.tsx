@@ -1,17 +1,16 @@
-import Container from "./Container";
-import Footer from "./Footer";
-import Meta from "./Meta";
+import { Container } from "./Container";
+import { SiteFooter } from "./SiteFooter";
+import { Meta } from "./Meta";
 import { SiteHeader } from "./SiteHeader";
 
 type Props = {
-  preview?: boolean;
   children: React.ReactNode;
 };
 
-const Layout = ({ preview, children }: Props) => {
+const Layout = ({ children }: Props) => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Container className="mb-auto py-20">
+      <Container className="mb-auto pt-20 pb-32">
         <Meta />
         <div>
           <main>
@@ -20,7 +19,7 @@ const Layout = ({ preview, children }: Props) => {
           </main>
         </div>
       </Container>
-      <Footer />
+      <SiteFooter />
     </div>
   );
 };

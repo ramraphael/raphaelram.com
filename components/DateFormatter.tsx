@@ -5,9 +5,7 @@ type Props = {
   dateString: string;
 };
 
-const DateFormatter = ({ dateString, className }: Props) => {
+export const DateFormatter = ({ dateString, className }: Props) => {
   const date = parseISO(dateString);
   return <span className={className}>{format(date, "LLLL	d, yyyy")}</span>;
 };
-
-export default DateFormatter;

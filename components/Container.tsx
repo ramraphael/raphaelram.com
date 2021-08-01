@@ -6,7 +6,10 @@ type Props = {
   className?: string;
 };
 
-const Container: FunctionComponent<Props> = ({ children, className }) => {
+export const Container: FunctionComponent<Props> = ({
+  children,
+  className,
+}) => {
   return (
     <div
       className={cn("container", "mx-auto", "px-10", "max-w-3xl", className)}
@@ -15,5 +18,3 @@ const Container: FunctionComponent<Props> = ({ children, className }) => {
     </div>
   );
 };
-
-export default Container;

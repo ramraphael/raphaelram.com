@@ -13,11 +13,12 @@ import markdownToHtml from "../../lib/markdownToHtml";
 import PostType from "../../types/post";
 import { PostTitleAndDate } from "../../components/PostTitleAndDate";
 import { NextPage } from "next";
+import { NextAndPreviousPost } from "../../components/NextAndPreviousPost";
 
 type Props = {
   post: PostType;
-  nextPost: { title: string; date: string; excerpt: string };
-  previousPost: { title: string; date: string; excerpt: string };
+  nextPost: { title: string; slug: string };
+  previousPost: { title: string; slug: string };
 };
 
 const Post: NextPage<Props> = ({ post, nextPost, previousPost }) => {
@@ -30,20 +31,40 @@ const Post: NextPage<Props> = ({ post, nextPost, previousPost }) => {
       {router.isFallback ? (
         <PostTitleAndDate title="Loading..." />
       ) : (
-        <article className="mb-32">
+        <article className="">
           <Head>
             <title>{post.title}</title>
-            <meta property="og:image" content={post.ogImage.url} />
+
+            {/* Meta tags for Facebook */}
+            <meta property="og:title" content={post.title} />
+            <meta property="og:description" content={post.description} />
+            <meta property="og:image" content={post.coverImage} />
+            <meta
+              property="og:url"
+              content={`https://www.raphaelram.com/posts/${post.slug}`}
+            />
+
+            {/* Meta tags for Twitter */}
+            <meta name="twitter:title" content={post.title} />
+            <meta name="twitter:description" content={post.description} />
+            <meta name="twitter:image" content={post.coverImage} />
+            <meta name="twitter:card" content="summary" />
           </Head>
 
           <PostHeader
             title={post.title}
             coverImage={post.coverImage}
             date={post.date}
-            author={post.author}
           />
 
-          <PostBody content={post.content} />
+          <PostBody className="mb-28" content={post.content} />
+
+          <hr className="mb-14" />
+
+          <NextAndPreviousPost
+            previousPost={previousPost}
+            nextPost={nextPost}
+          />
         </article>
       )}
     </Fragment>
@@ -63,10 +84,9 @@ export async function getStaticProps({ params }: Params) {
     "title",
     "date",
     "slug",
-    "author",
     "content",
-    "ogImage",
     "coverImage",
+    "description",
   ]);
 
   const content = await markdownToHtml(post.content || "");
@@ -74,8 +94,7 @@ export async function getStaticProps({ params }: Params) {
   // TODO const fetch next and previous post summary, date and title
   const { nextPost, previousPost } = getNextAndPreviousPost(params.slug, [
     "title",
-    "date",
-    "excerpt",
+    "slug",
   ]);
 
   return {
