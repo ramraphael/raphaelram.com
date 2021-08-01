@@ -2,6 +2,11 @@ module.exports = {
   mode: "jit",
   purge: ["./components/**/*.tsx", "./pages/**/*.tsx"],
   theme: {
+    fill: (theme) => ({
+      red: theme("colors.red.700"),
+      green: theme("colors.green.500"),
+      blue: theme("colors.blue.500"),
+    }),
     extend: {
       colors: {
         "accent-1": "#FAFAFA",
@@ -26,6 +31,11 @@ module.exports = {
       transitionProperty: {
         spacing: "margin, padding",
       },
+    },
+  },
+  variants: {
+    extend: {
+      fill: ["group-hover", "hover", "focus"],
     },
   },
 };

@@ -21,11 +21,11 @@ const Index = ({ allPosts }: Props) => {
       {allPosts.map(({ title, slug, date, excerpt }) => (
         <div
           key={slug}
-          className="group cursor-pointer hover:border-l-4 hover:pl-4 transition-spacing duration-200 text-gray-700 mb-12"
+          className="hover:opacity-80 cursor-pointer hover:border-l-4 hover:pl-4 transition-spacing duration-200 text-gray-700 mb-12 last:mb-0"
           role="link"
           onClick={() => router.push(`/post/${slug}`)}
         >
-          <h1 className="text-2xl font-semibold font-serif mb-3 group-hover:text-red-700 ">
+          <h1 className="text-2xl font-semibold font-serif mb-3 group-hover:text-red-700">
             {title}
           </h1>
 

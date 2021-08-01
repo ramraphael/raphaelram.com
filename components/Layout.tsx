@@ -1,8 +1,7 @@
-import { Fragment } from "react";
 import Container from "./Container";
 import Footer from "./Footer";
 import Meta from "./Meta";
-import { useRouter } from "next/router";
+import { SiteHeader } from "./SiteHeader";
 
 type Props = {
   preview?: boolean;
@@ -10,37 +9,19 @@ type Props = {
 };
 
 const Layout = ({ preview, children }: Props) => {
-  const router = useRouter();
-
   return (
-    <Fragment>
-      <Container>
+    <div className="min-h-screen flex flex-col">
+      <Container className="mb-auto py-20">
         <Meta />
-        <div className="min-h-screen">
+        <div>
           <main>
-            <div
-              role="link"
-              onClick={() => router.push("/")}
-              className="cursor-pointer group text-gray-700"
-            >
-              <h1 className="text-6xl font-bold mt-14 mb-4">
-                <span className="text-red-700 group-hover:text-shadow-md">
-                  Raphael
-                </span>{" "}
-                Ram
-              </h1>
-
-              <h2 className="text-3xl mb-16">
-                <span className="text-red-700">writes</span> poetry, prose, and{" "}
-                <span className="text-red-700">code</span>.
-              </h2>
-            </div>
+            <SiteHeader />
             {children}
           </main>
         </div>
       </Container>
       <Footer />
-    </Fragment>
+    </div>
   );
 };
 

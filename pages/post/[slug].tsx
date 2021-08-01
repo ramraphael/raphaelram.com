@@ -3,19 +3,24 @@ import { useRouter } from "next/router";
 import ErrorPage from "next/error";
 import PostBody from "../../components/PostBody";
 import PostHeader from "../../components/PostHeader";
-import { getPostBySlug, getAllPosts } from "../../lib/api";
+import {
+  getPostBySlug,
+  getAllPosts,
+  getNextAndPreviousPost,
+} from "../../lib/api";
 import Head from "next/head";
 import markdownToHtml from "../../lib/markdownToHtml";
 import PostType from "../../types/post";
 import { PostTitleAndDate } from "../../components/PostTitleAndDate";
+import { NextPage } from "next";
 
 type Props = {
   post: PostType;
-  morePosts: PostType[];
-  preview?: boolean;
+  nextPost: { title: string; date: string; excerpt: string };
+  previousPost: { title: string; date: string; excerpt: string };
 };
 
-const Post = ({ post, morePosts, preview }: Props) => {
+const Post: NextPage<Props> = ({ post, nextPost, previousPost }) => {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -63,7 +68,15 @@ export async function getStaticProps({ params }: Params) {
     "ogImage",
     "coverImage",
   ]);
+
   const content = await markdownToHtml(post.content || "");
+
+  // TODO const fetch next and previous post summary, date and title
+  const { nextPost, previousPost } = getNextAndPreviousPost(params.slug, [
+    "title",
+    "date",
+    "excerpt",
+  ]);
 
   return {
     props: {
@@ -71,6 +84,8 @@ export async function getStaticProps({ params }: Params) {
         ...post,
         content,
       },
+      nextPost,
+      previousPost,
     },
   };
 }
