@@ -6,7 +6,7 @@ export const SiteFooter = () => {
     <footer className="bg-accent-1 border-t border-accent-2 py-2">
       <Container>
         <div className="py-8 flex flex-col items-center lg:flex-row">
-          <h3 className="flex justify-center text-xl text-gray-700 font-bold tracking-tighter leading-tight mb-8 md:mb-auto md:mr-auto hover:opacity-80 hover:underline transition duration-200">
+          <h3 className="flex justify-center text-xl text-gray-700 font-bold tracking-tighter leading-tight mb-8 md:mb-auto md:mr-auto hover:opacity-80 hover:text-red-700 transition duration-200">
             <a
               href="https://github.com/ramraphael/raphaelram.com"
               target="_blank"

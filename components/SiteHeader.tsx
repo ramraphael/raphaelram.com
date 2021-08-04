@@ -17,8 +17,10 @@ export const SiteHeader: FunctionComponent = () => {
         >
           <h1
             className={cn(
-              { "text-6xl": isHomePage },
-              { "text-5xl": !isHomePage },
+              { "text-4xl": isHomePage },
+              { "md:text-6xl": isHomePage },
+              { "text-3xl": !isHomePage },
+              { "md:text-5xl": !isHomePage },
               "font-bold",
               "mb-4"
             )}
@@ -28,7 +30,7 @@ export const SiteHeader: FunctionComponent = () => {
           </h1>
 
           {isHomePage && (
-            <h2 className="text-3xl">
+            <h2 className="text-xl md:text-3xl">
               <span className="text-red-700">writes</span> poetry, prose, and{" "}
               <span className="text-red-700">code</span>.
             </h2>
